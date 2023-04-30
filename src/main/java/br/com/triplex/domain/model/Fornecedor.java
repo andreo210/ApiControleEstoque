@@ -10,13 +10,13 @@ import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data //ja faz os getter e setter, construtores, toString, 
-@Entity// cria entidade Cidade
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)//lombok cria os hashcode
+@Data  
+@Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Fornecedor {
-	  @EqualsAndHashCode.Include//lombok hash code
-	  @Id//defini como id
-	  @GeneratedValue(strategy = GenerationType.IDENTITY) //auto incremento
+	  @EqualsAndHashCode.Include
+	  @Id
+	  @GeneratedValue(strategy = GenerationType.IDENTITY) 
 	  public int id;
 	  
 	  @Column(nullable = false)//campo não nulo
