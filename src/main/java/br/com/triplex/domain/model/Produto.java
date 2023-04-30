@@ -51,7 +51,7 @@ public class Produto {
 	@ManyToMany
 	@JoinTable
     public  List<MarcasProduto>marcas = new ArrayList<>() ;
-
+//
 	@JoinColumn(nullable = false)
 	@ManyToOne
     public  Fornecedor fornecedor ;
