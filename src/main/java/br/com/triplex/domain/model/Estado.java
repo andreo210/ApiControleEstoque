@@ -9,23 +9,23 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-@Data //ja faz os getter e setter, construtores, toString, 
-@Entity// cria entidade Cidade
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)//lombok cria os hashcode
+@Data 
+@Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Estado {
 
-	@EqualsAndHashCode.Include//lombok hash code
-	@Id//defini como id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incremento
-	public int id ;
+	@EqualsAndHashCode.Include
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	public Long id ;
 	
-	@Column(nullable = false)//campo não nulo
+	@Column(nullable = false)
     public String nome;
 	
-	@Column(nullable = false)//campo não nulo
+	@Column(nullable = false)
     public String uf ;
 	
-	@JoinColumn(nullable = false)//coluna não nulo
-	@ManyToOne//muitas Cidade para um Estado
+	@JoinColumn(nullable = false)
+	@ManyToOne
 	private Pais pais;
 }
