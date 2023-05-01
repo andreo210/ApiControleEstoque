@@ -13,47 +13,48 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.triplex.domain.model.Estado;
 import br.com.triplex.domain.model.Pais;
-import br.com.triplex.domain.repository.IPaisRepository;
-import br.com.triplex.domain.service.PaisService;
+import br.com.triplex.domain.repository.IEstadoRepository;
+import br.com.triplex.domain.service.EstadoService;
 
 @RestController
-@RequestMapping("/pais")
-public class PaisController {
+@RequestMapping("/estado")
+public class EstadoController {
 
 	@Autowired
-	private IPaisRepository paisRepository;
+	private IEstadoRepository estadoRepository;
 	
 	@Autowired	
-	private  PaisService paisService;
+	private  EstadoService estadoService;
 	
 	@GetMapping
-	public List<Pais> listar(){
-		return paisRepository.findAll();
+	public List<Estado> listar(){
+		return estadoRepository.findAll();
 	}
 	 	
  
 	@GetMapping("/{Id}")
-	public Pais buscar(@PathVariable Long Id) {
-	 return paisService.buscarOuFalhar(Id);		
+	public Estado buscar(@PathVariable Long Id) {
+	 return estadoService.buscarOuFalhar(Id);		
 	}	
 	
 	@PostMapping
-	public Pais adicionar(@RequestBody Pais pais) {
-		return paisService.salvar(pais);
+	public Estado adicionar(@RequestBody Estado pais) {
+		return estadoService.salvar(pais);
 	}
 	
 
 	@PutMapping("/{Id}")
-	public Pais atualizar(@PathVariable Long Id, @RequestBody Pais cozinha ){		
-	   Pais cozinhaAtual = paisService.buscarOuFalhar(Id);		
-		BeanUtils.copyProperties(cozinha, cozinhaAtual, "id");		
-		return paisService.salvar(cozinhaAtual);		
+	public Estado atualizar(@PathVariable Long Id, @RequestBody Pais cozinha ){		
+	   Estado estadoAtual = estadoService.buscarOuFalhar(Id);		
+		BeanUtils.copyProperties(cozinha, estadoAtual, "id");		
+		return estadoService.salvar(estadoAtual);		
 	}
 	
 	
 	@DeleteMapping("/{Id}")
 	public void remover(@PathVariable Long Id){		
-		paisService.excluir(Id);	  		
+		estadoService.excluir(Id);	  		
 	}
 }
