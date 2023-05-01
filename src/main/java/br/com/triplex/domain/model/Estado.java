@@ -1,5 +1,7 @@
 package br.com.triplex.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,8 +25,9 @@ public class Estado {
     public String nome;
 	
 	@Column(nullable = false)//campo não nulo
-    public String UF ;
+    public String uf ;
 	
+	@JsonIgnore
 	@JoinColumn(nullable = false)//coluna não nulo
 	@ManyToOne//muitas Cidade para um Estado
 	private Pais pais;

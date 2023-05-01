@@ -2,7 +2,6 @@ package br.com.triplex.domain.model;
 
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import org.hibernate.annotations.CreationTimestamp;
 

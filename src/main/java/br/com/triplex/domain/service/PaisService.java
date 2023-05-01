@@ -1,6 +1,5 @@
 package br.com.triplex.domain.service;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -13,7 +12,7 @@ import br.com.triplex.domain.model.Pais;
 import br.com.triplex.domain.repository.IPaisRepository;
 
 @Service
-public class PaisServive {
+public class PaisService {
 
 	@Autowired
 	private IPaisRepository paisRepository;
@@ -30,7 +29,7 @@ public class PaisServive {
 						String.format("Não existe cadastro de pais com o códogo %d", id));
 			}		
 			catch (DataIntegrityViolationException e) {
-				throw new EntidadeEmUsoException(String.format("Cozinha de código %d não pode ser removida, pois esta em us", id));
+				throw new EntidadeEmUsoException(String.format("Pais de código %d não pode ser removida, pois esta em uso", id));
 			}
 	}
 	
