@@ -8,15 +8,37 @@ import org.springframework.stereotype.Service;
 import br.com.triplex.domain.exception.EntidadeEmUsoException;
 import br.com.triplex.domain.exception.EntidadeNaoEncontradaException;
 import br.com.triplex.domain.model.Cidade;
+import br.com.triplex.domain.model.Estado;
+import br.com.triplex.domain.model.Pais;
 import br.com.triplex.domain.repository.ICidadeRepository;
+import br.com.triplex.domain.repository.IEstadoRepository;
+import br.com.triplex.domain.repository.IPaisRepository;
 
 @Service
 public class CidadeService {
 	
 	@Autowired
 	private ICidadeRepository cidadeRepository;
+	@Autowired
+	private IPaisRepository paisRepository;
+	@Autowired
+	private IEstadoRepository estadoRepository;
 	
 	public Cidade salvar(Cidade cidade) {
+		
+		//faz uma buca no objeto pais
+		Long paisId = cidade.getEstado().getPais().getId();
+		Pais pais = paisRepository.findById(paisId)
+					.orElseThrow(()-> new EntidadeNaoEncontradaException(
+					String.format("Não existe cadastro de pais com código %d", paisId)));	
+		
+		Long estadoId = cidade.getEstado().getId();
+		Estado estado = estadoRepository.findById(estadoId)
+					.orElseThrow(()-> new EntidadeNaoEncontradaException(
+					String.format("Não existe cadastro de estado com código %d", estadoId)));	
+
+		cidade.setEstado(estado);
+		
 		return cidadeRepository.save(cidade);
 	}
 	
