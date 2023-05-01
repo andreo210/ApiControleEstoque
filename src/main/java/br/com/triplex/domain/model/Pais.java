@@ -9,19 +9,19 @@ import jakarta.persistence.JoinColumn;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data //ja faz os getter e setter, construtores, toString, 
-@Entity// cria entidade Cidade
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)//lombok cria os hashcode
+@Data 
+@Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Pais {
-	@EqualsAndHashCode.Include//lombok hash code
-	@Id//defini como id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incremento
-	public int id;
+	@EqualsAndHashCode.Include
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long id;
 	
-	@Column(nullable = false)//campo não nulo
+	@Column(nullable = false)
 	public String nome;
 	
-	@JoinColumn(nullable = false)//coluna não nulo
+	@JoinColumn(nullable = false)
 	public String codigo;
 	
 }
