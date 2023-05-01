@@ -21,7 +21,7 @@ public class Cidade {
 	public int id;     
 	
 	@Column(nullable = false)//coluna não nulo
-    public String Nome;     
+    public String nome;     
 
 	@JoinColumn(nullable = false)//coluna não nulo
 	@ManyToOne//muitas Cidade para um Estado
